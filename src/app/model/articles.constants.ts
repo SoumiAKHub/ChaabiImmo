@@ -1,0 +1,53 @@
+export interface ArticleDommage {
+  id: number;
+  nom: string;
+  natures: string[];
+}
+
+export const ARTICLES_DAMMAGES: ArticleDommage[] = [
+  { id: 1, nom: 'Parechoc AVG', natures: ['Endommagé', 'Déformé'] },
+  { id: 2, nom: 'Optique AVG', natures: ['Cassé', 'Rayé'] },
+  { id: 3, nom: 'Calendre  AVG', natures: ['Endommagé', 'Déformé'] },
+  { id: 4, nom: 'Parechoc AVD', natures: ['Endommagé', 'Déformé'] },
+  { id: 5, nom: 'Optique AVD', natures: ['Cassé', 'Rayé'] },
+  { id: 6, nom: 'Calendre AVD', natures: ['Endommagé', 'Déformé'] },
+  { id: 7, nom: 'Ail AVD', natures: ['Rayé', 'Cabossé'] },
+  { id: 8, nom: 'Vitre AVD', natures: ['Cassée', 'Fissurée'] },
+  { id: 9, nom: 'Jante AVD', natures: ['Endommagée', 'Manque Enjoliveur'] },
+  { id: 10, nom: 'Rétroviseur AVD', natures: ['Cassé (Miroir)', 'Endommagé'] },
+  { id: 11, nom: 'Porte AVD', natures: ['Endommagée', 'Rayée'] },
+  { id: 12, nom: 'Ail ARD', natures: ['Rayé', 'Cabossé'] },
+  { id: 13, nom: 'Vitre ARD', natures: ['Cassée', 'Fissurée'] },
+  { id: 14, nom: 'Jante ARD', natures: ['Endommagée', 'Manque Enjoliveur'] },
+  { id: 15, nom: 'Porte ARD', natures: ['Endommagée', 'Rayée'] },
+  { id: 16, nom: 'Feu Rouge ARD', natures: ['Cassé', 'Rayé'] },
+  { id: 17, nom: 'Parechoc  ARD', natures: ['Endommagé', 'Déformé'] },
+  { id: 18, nom: 'Feu Rouge AVD', natures: ['Cassé', 'Rayé'] },
+  { id: 19, nom: 'Parechoc  AVD', natures: ['Endommagée', 'Déformé'] },
+  { id: 20, nom: 'Ail ARG', natures: ['Rayé', 'Cabossé'] },
+  { id: 21, nom: 'Vitre ARG', natures: ['Cassée', 'Fissurée'] },
+  { id: 22, nom: 'Jante ARG', natures: ['Endommagée', 'Manque Enjoliveur'] },
+  { id: 23, nom: 'Porte ARG', natures: ['Endommagé', 'Rayée'] },
+  { id: 24, nom: 'Ail AVG', natures: ['Rayé', 'Cabossé'] },
+  { id: 25, nom: 'Vitre AVG', natures: ['Cassée', 'Fissurée'] },
+  { id: 26, nom: 'Jante AVG', natures: ['Endommagée', 'Manque Enjoliveur'] },
+  { id: 27, nom: 'Rétroviseur AVG', natures: ['Cassé (Miroir)', 'Endommagé'] },
+  { id: 28, nom: 'Porte AVG', natures: ['Endommagée', 'Rayée'] },
+  { id: 29, nom: 'Capot AV', natures: ['Endommagé', 'Rayé'] },
+  { id: 30, nom: 'Pare-Brise AV', natures: ['Cassé', 'Fissuré'] },
+  { id: 31, nom: 'Essuie-Glace AV', natures: ['Cassé', 'Manque'] },
+  { id: 32, nom: 'Plafond', natures: ['Rayé', 'Cabossé'] },
+  { id: 33, nom: 'Pare-Brise AR', natures: ['Cassé', 'Fissuré'] },
+  { id: 34, nom: 'Essuie-Glace AR', natures: ['Cassé', 'Manque'] },
+  { id: 35, nom: 'Malle AR', natures: ['Rayée', 'Cabossée'] },
+  { id: 36, nom: 'Volant', natures: ['Détérioré'] },
+  { id: 37, nom: 'Tableau de Bord', natures: ['Endommagé'] },
+  { id: 38, nom: 'Poste Radio', natures: ['Défectueux', 'Manque'] },
+  { id: 39, nom: 'Siège AVD', natures: ['Percé', 'Sale'] },
+  { id: 40, nom: 'Siège AVG', natures: ['Percé', 'Sale'] },
+  { id: 41, nom: 'Levier de Vitesse', natures: ['Endommagé'] },
+  { id: 42, nom: 'Siège ARD', natures: ['Percé', 'Sale'] },
+  { id: 43, nom: 'Siège ARG', natures: ['Percé', 'Sale'] },
+  { id: 44, nom: 'Siège AR (Milieu)', natures: ['Percé', 'Sale'] },
+  { id: 45, nom: 'Etat Général', natures: ['Bon ', 'Sale'] }
+];

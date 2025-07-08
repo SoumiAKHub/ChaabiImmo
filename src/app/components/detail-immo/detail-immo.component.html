@@ -1,0 +1,311 @@
+<app-navbar></app-navbar>
+<!-- details-immobilisation.component.html -->
+<div class="container my-3 p-3 border rounded">
+
+  <h5 class="bg-secondary text-white p-2 mb-3">Détails de l’immobilisation</h5>
+
+  <!-- Filtre / recherche (extrait en haut de l'image) -->
+  <form class="row g-3 mb-3">
+    <div class="col-md-2">
+      <label for="dateImmo" class="form-label">Date immo</label>
+      <input type="date" class="form-control" id="dateImmo" value="{{selectedDemande.dateProbleme }}" [readonly]="true" />
+    </div>
+    <div class="col-md-2">
+      <label for="fournisseur" class="form-label">Fournisseur</label>
+      <input type="text" class="form-control" id="fournisseur" value="{{selectedDemande.fournisseur }}" [readonly]="true" />
+    </div>
+    <div class="col-md-2">
+      <label for="typeImmo" class="form-label">Type immo</label>
+      <input type="text" class="form-control" id="typeImmo"  [readonly]="true" />
+    </div>
+    <div class="col-md-2">
+      <label for="motifImmo" class="form-label">Motif Immo</label>
+      <input type="text" class="form-control" id="motifImmo" value="{{selectedDemande.motifImmo }}" [readonly]="true"/>
+    </div>
+    <div class="col-md-2">
+      <label for="statut" class="form-label">Statut</label>
+      <input type="text" class="form-control" id="statut" value="{{selectedDemande.statut }}" [readonly]="true" />
+    </div>
+  </form>
+
+  <!-- Onglets -->
+<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">Détails</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="degats-tab" data-bs-toggle="tab" data-bs-target="#degats" type="button" role="tab">Dégâts</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images" type="button" role="tab">Images</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="anomalies-tab" data-bs-toggle="tab" data-bs-target="#anomalies" type="button" role="tab">Anomalies</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button" role="tab">Documents de bord</button>
+  </li>
+</ul>
+  <!-- Contenu des onglets -->
+<div class="tab-content">
+    <!----------------------------------------------------- Sections Détails -------------------------------------------------------------------->
+  <div class="tab-pane fade show active" id="details" role="tabpanel">
+    <div>
+  <button *ngIf="!editMode" class="btn btn-primary mb-3" (click)="toggleEditMode()">
+    Modifier la demande
+  </button>
+
+  <!-- Buttons shown in edit mode -->
+  <div *ngIf="editMode" class="mb-3">
+    <button class="btn btn-success me-2" (click)="updateDemande()">Valider</button>
+    <button class="btn btn-secondary" (click)="cancelEdit()"> Annuler</button>
+  </div>
+</div>
+  <fieldset class="border p-3 mb-3">
+    <legend class="float-none w-auto px-2">Véhicule</legend>
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">Immatriculation</label>
+        <input [(ngModel)]="selectedDemande.immat" type="text" class="form-control" [readonly]="!editMode" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Marque & Modèle</label>
+        <input [(ngModel)]="selectedDemande.marque" type="text" class="form-control" [readonly]="!editMode" />
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Km</label>
+        <input [(ngModel)]="selectedDemande.km" type="text" class="form-control" [readonly]="!editMode" />
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">N° chassi</label>
+        <input [(ngModel)]="selectedDemande.nchassi" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Société</label>
+        <input [(ngModel)]="selectedDemande.societe" type="text" class="form-control" [readonly]="!editMode" />
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="border p-3 mb-3">
+    <legend class="float-none w-auto px-2">Demande</legend>
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">Date du problème</label>
+        <input [(ngModel)]="selectedDemande.dateProbleme" type="date" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-5">
+        <label class="form-label">Créateur de l’immobilisation</label>
+        <input [(ngModel)]="selectedDemande.createurDemande" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Traiteur de la demande</label>
+        <input [(ngModel)]="selectedDemande.traiteurdemand" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="border p-3">
+    <legend class="float-none w-auto px-2">Client</legend>
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">Client</label>
+        <input [(ngModel)]="selectedDemande.client" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Position de Contrat</label>
+        <input [(ngModel)]="selectedDemande.positionContrat" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Ville</label>
+        <input [(ngModel)]="selectedDemande.ville" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">GSM</label>
+        <input [(ngModel)]="selectedDemande.gsm" type="text" class="form-control" [readonly]="!editMode"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Email</label>
+        <input [(ngModel)]="selectedDemande.email" type="email" class="form-control" [readonly]="!editMode"/>
+      </div>
+    </div>
+  </fieldset>
+</div>
+  <!-----------------------------------Sections Dégat ------------------------------------------------------------------------------------------>
+ <div class="tab-pane fade" id="degats" role="tabpanel">
+ <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#ajoutModal">Ajouter un dégât</button>
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>N°</th>
+      <th>Article</th>
+      <th>Nature</th>
+      <th>Image</th>
+      <th>Modifier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of listeDegats; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ d.article }}</td>
+      <td>{{ d.nature }}</td>
+      <td><button class="btn btn-outline-secondary btn-sm" (click)="ouvrirGalerie(i)" data-bs-toggle="modal" data-bs-target="#galerieModal">
+    <i class="bi bi-camera"></i> <!-- Bootstrap Icons -->
+  </button></td>
+      <td>
+        <button class="btn btn-sm btn-warning" (click)="ouvrirModalModification(i)" data-bs-toggle="modal" data-bs-target="#modifierModal">
+          Modifier
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!--modal d'ajout-->
+<div class="modal fade" id="ajoutModal" tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content" (ngSubmit)="ajouterDegat()">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter un dégât</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label>Article</label>
+          <select class="form-select" [(ngModel)]="nouveauDegat.article" name="articleAjout" required (change)="onArticleSelectedAjout(nouveauDegat.article)">
+            <option value="">-- Sélectionner --</option>
+            <option *ngFor="let a of articles" [value]="a.nom">{{ a.nom }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label>Nature</label>
+          <select class="form-select" [(ngModel)]="nouveauDegat.nature" name="natureAjout" required>
+            <option value="">-- Sélectionner --</option>
+            <option *ngFor="let n of naturesDisponiblesAjout" [value]="n">{{ n }}</option>
+          </select>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Ajouter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--modal modification-->
+<div class="modal fade" id="modifierModal" tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content" (ngSubmit)="modifierDegat()">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifier un dégât</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label>Article</label>
+          <select class="form-select" [(ngModel)]="degatAModifier.article" name="articleModif" required (change)="onArticleSelectedModif(degatAModifier.article)">
+            <option value="">-- Sélectionner --</option>
+            <option *ngFor="let a of articles" [value]="a.nom">{{ a.nom }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label>Nature</label>
+          <select class="form-select" [(ngModel)]="degatAModifier.nature" name="natureModif" required>
+            <option value="">-- Sélectionner --</option>
+            <option *ngFor="let n of naturesDisponiblesModif" [value]="n">{{ n }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Modifier</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--Modal gallerie-->
+<!-- Galerie Modal -->
+<div class="modal fade" id="galerieModal" tabindex="-1" aria-labelledby="galerieModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          📷 Galerie – {{ degatEnGalerie?.article || 'Aucun article sélectionné' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Si galerie vide -->
+        <div *ngIf="imagePreviewUrls.length === 0" class="text-center text-muted">
+          Aucune image pour ce dégât 😢
+        </div>
+
+        <!-- Grille des images -->
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3" *ngFor="let img of imagePreviewUrls">
+            <img [src]="img" class="img-thumbnail w-100 h-100 shadow-sm" style="object-fit: cover;" />
+          </div>
+        </div>
+
+        <!-- Ajouter une image -->
+        <div class="mt-4 d-flex justify-content-center">
+          <label class="btn btn-outline-primary">
+            ➕ Ajouter une photo
+            <input type="file" (change)="onImageSelected($event)" accept="image/*" capture="environment" hidden />
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+    <!-- Sections images -->
+  <div class="tab-pane fade" id="images" role="tabpanel">
+   <!-- Onglet Images -->
+<div>
+
+  
+
+  <!-- Galerie d’images -->
+ <!-- Image uploader -->
+<div class="mb-3">
+  <label class="btn btn-outline-primary">
+    📷 Ajouter une image
+    <input type="file" (change)="onAddImageSection($event)" accept="image/*" hidden />
+  </label>
+</div>
+
+<!-- Display images -->
+<div class="row g-3">
+  <div
+    class="col-6 col-sm-4 col-md-3 col-lg-2"
+    *ngFor="let img of imagesSection; let i = index"
+    (click)="openImage(i)"
+    style="cursor: pointer"
+  >
+    <img [src]="img.thumb" class="img-fluid img-thumbnail shadow-sm" style="object-fit: cover; height: 200px;" />
+  </div>
+</div>
+
+</div>
+
+  </div>
+    <!-- Sections anomalies -->
+  <div class="tab-pane fade" id="anomalies" role="tabpanel">
+    <p>Contenu des anomalies</p>
+  </div>
+    <!-- Sections Dashboard -->
+  <div class="tab-pane fade" id="dashboard" role="tabpanel">
+    <p>Documents de bord</p>
+  </div>
+  </div>
+</div>
+

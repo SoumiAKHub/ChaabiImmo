@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li>
+            <img src="assets/chaabilldNav.png" alt="Chaabi LD" class="chaabilld" style="max-height: 40px;" />
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"  href="/home">Notifications</a>
+
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/demandes">Demandes</a>
+
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown">Administration</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item"  routerLink="template-Form">Gestion des utilisateurs</a></li>
+              <li><a class="dropdown-item"  routerLink="reactive-Form">Gestion des fournisseurs</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul><button (click)="logout()" class="btn btn-link text-danger" title="Logout">
+         <i class="bi bi-box-arrow-right" style="font-size: 1.5rem;"></i>
+        </button></ul>
+         <ul>
+            <img src="assets/chaabitrucksNav.png" alt="Chaabi LD" class="chaabilld" style="max-height: 40px;" />
+          
+         </ul>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>

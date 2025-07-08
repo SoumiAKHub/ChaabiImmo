@@ -1,0 +1,169 @@
+<app-navbar></app-navbar>
+<div class="container mt-4" style="width: 100%; margin: 0; max-width: 100%;">
+
+  <div class="bg-light p-1 rounded shadow-sm sticky-top d-flex justify-content-between align-items-center">
+  <h2 class="text-danger m-0">Liste des immobilisations</h2>
+  <!-- Button trigger modal -->
+  <button 
+    type="button" 
+    class="btn btn-primary" 
+    data-bs-toggle="modal" 
+    data-bs-target="#exampleModal">
+    Ajouter une demande
+  </button>
+</div>
+
+    <div  class="search-container">
+      <input type="text" 
+      placeholder="Rechercher..." class="search-input">
+    </div>
+    <ngx-datatable
+  class="material"
+  [rows]="rows"
+  [columns]="columns"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="'auto'"
+  [limit]="5"
+  [reorderable]="true"
+  [offset]="page"
+  [selectionType]="selectionType"
+  (select)="onRowClick($event.selected[0])"
+  style="width: 100%; margin: auto;">
+
+  
+  <ngx-datatable-column name="Immatriculation" prop="immat"></ngx-datatable-column>
+  <ngx-datatable-column name="Marque/Modèle" prop="marque"></ngx-datatable-column>
+  <ngx-datatable-column name="Fournisseur" prop="fournisseur"></ngx-datatable-column>
+  <ngx-datatable-column name="Motif immobilisation" prop="motifImmo"></ngx-datatable-column>
+
+  <ngx-datatable-column name="Date début">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      {{ row.dateDebut | date:'dd/MM/yyyy' }}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Date fin">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      {{ row.dateFin | date:'dd/MM/yyyy' }}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Durée" prop="duree"></ngx-datatable-column>
+
+  <ngx-datatable-column name="Client" prop="client"></ngx-datatable-column>
+  <ngx-datatable-column name="Créateur de la demande" prop="createurDemande"></ngx-datatable-column>
+
+  <ngx-datatable-column name="Date clôture">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      {{ row.dateCloture | date:'dd/MM/yyyy' }}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Statut" prop="statut"></ngx-datatable-column>
+  <ngx-datatable-column name="Statut fournisseur" prop="statutFrn"></ngx-datatable-column>
+
+ </ngx-datatable> 
+  </div>
+
+<!-- Modal for adding new demande -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form [formGroup]="demandeForm" (ngSubmit)="onSubmit()">
+    <div class="modal-dialog modal-fullscreen-custom"> <!-- modal large -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter une demande</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <h2 [ngClass]="{'text-success': messageType === 'success', 'text-danger': messageType === 'error'}">{{ message }}</h2>
+
+          <!-- Section Demande -->
+          <fieldset class="border p-3 mb-3">
+            <legend class="float-none w-auto px-2">Demande</legend>
+            <div class="row g-3">
+              <div class="col-md-2">
+                <label class="form-label">Numéro de demande</label>
+                <input formControlName="numeroDemande" type="text" class="form-control" required />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Fournisseur</label>
+                <input formControlName="fournisseur" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Date d'immobilisation</label>
+                <input formControlName="dateProbleme" type="date" class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Motif d'immobilisation</label>
+                <input formControlName="motifImmo" type="text" class="form-control" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section Véhicule -->
+          <fieldset class="border p-3 mb-3">
+            <legend class="float-none w-auto px-2">Véhicule</legend>
+            <div class="row g-3">
+              <div class="col-md-2">
+                <label class="form-label">Immatriculation</label>
+                <input formControlName="immat" type="text" class="form-control" required />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Marque / Modèle</label>
+                <input formControlName="marque" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Kilométrage</label>
+                <input formControlName="km" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Numéro châssis</label>
+                <input formControlName="nChassi" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Société</label>
+                <input formControlName="statutFrn" type="text" class="form-control" />
+              </div>
+            </div>
+          </fieldset>
+          <!-- Section Client & Contact -->
+          <fieldset class="border p-3">
+            <legend class="float-none w-auto px-2">Client & Contact</legend>
+            <div class="row g-3">
+              <div class="col-md-2">
+                <label class="form-label">Client</label>
+                <input formControlName="client" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Position Contrat</label>
+                <input formControlName="positionContrat" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">Ville</label>
+                <input formControlName="ville" type="text" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label">GSM</label>
+                <input formControlName="gsm" type="text" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Email</label>
+                <input formControlName="email" type="email" class="form-control" />
+              </div>
+            </div>
+          </fieldset>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" [disabled]="demandeForm.invalid">Ajouter la demande</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

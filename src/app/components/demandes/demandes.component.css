@@ -1,0 +1,23 @@
+::ng-deep .datatable-body-row:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+.modal-fullscreen-custom {
+  max-width: 98vw;
+  width: 98vw;
+  max-height: 98vh;
+  height: 98vh;
+  margin: auto;
+}
+
+.modal-fullscreen-custom .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+.form-label {
+  display: block;
+  white-space: normal;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+

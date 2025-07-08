@@ -1,0 +1,53 @@
+<!-- Section: Design Block -->
+<section class="bg overflow-hidden">
+
+    <!-- Image alignée à gauche -->
+    <div class="d-flex justify-content-start align-items-start" style="position: absolute; top: 0; left: 0; width: 50%;">
+      <img src="assets/chaabilld.png" alt="Chaabi LD" class="chaabilld" />
+    </div>
+  
+    <!-- Image alignée à droite -->
+    <div class="d-flex justify-content-end align-items-start" style="position: absolute; top: 0; right: 0; width: 50%;">
+      <img src="assets/chaabitrucks.png" alt="Chaabi Trucks" class="chaabilld" />
+    </div>
+  
+    <!-- Formulaire centré -->
+    <div
+      class="container px-4 py-5 px-md-5 text-center text-lg-start my-5 d-flex justify-content-center align-items-center"
+      style="height: 100vh;">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-12 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass " style="max-width: 90%; width: 700px;">
+            <div class="card-body px-4 px-md-5">
+              <h3 class="my-2 display-6  ls-tight" style="color: black">
+                Convoyage <br />
+              </h3>
+              <!-- Error message if authentication fails -->
+               
+              <form>
+                
+                <div data-mdb-input-init class="form-outline mb-4 pt-4">
+                  <label class="form-label" >Nom d'utilisateur</label>
+                  <input type="text"  class="form-control" placeholder="Nom d'utilisateur"  formControlName="nom"/>
+                </div>
+  
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <label class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control" placeholder="Mot de passe" formControlName="pwd" />
+                </div>
+                <!-- Submit button -->
+                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" (click)="getAuth()">
+                  Se connecter
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  <!-- Section: Design Block -->
